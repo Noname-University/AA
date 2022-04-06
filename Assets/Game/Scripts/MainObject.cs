@@ -12,4 +12,5 @@ public class MainObject : MonoBehaviour
     {
         transform.Rotate(0,0,-(speed*Time.deltaTime));
     }
+    
 }
