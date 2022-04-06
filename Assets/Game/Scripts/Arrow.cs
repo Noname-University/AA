@@ -7,30 +7,38 @@ public class Arrow : MonoBehaviour
     [SerializeField]
     private float speed;
     private bool control;
-    private float movement;
+
     private Rigidbody rb;
 
-    private void Start() {
-        rb=GetComponent<Rigidbody>();
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
     }
     void Update()
     {
-       
-        
-        if (Input.touchCount>0)
+
+
+        if (Input.touchCount > 0)
         {
-            Debug.Log("asdasd");
+
             control = true;
         }
 
         if (control)
         {
-            rb.velocity =  new Vector3(0,speed*Time.deltaTime,0);
+            rb.velocity = new Vector3(0, speed * Time.deltaTime, 0);
             // transform.position +=new Vector3(0,Time.deltaTime * speed,0);
         }
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        var enemyT = other.GetComponent<Arrow>();
+        if (enemyT != null)
+        {
+            Time.timeScale = 0;
+        }
+    }
 
-    
-    
+
 }

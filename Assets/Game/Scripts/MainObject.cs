@@ -11,12 +11,13 @@ public class MainObject : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0,0,-(speed*Time.deltaTime));
+        transform.Rotate(0, 0, -(speed * Time.deltaTime));
     }
-    
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("asdasd");
-        arrow.transform.parent=transform;
-        arrow.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        other.transform.parent = transform;
+        other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
     }
 }
