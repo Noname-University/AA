@@ -26,7 +26,7 @@ public class Arrow : MonoBehaviour
         
     }
     private void OnTriggerEnter(Collider other) {
-        transform.position +=new Vector3(0,Time.deltaTime * speed,0);
+        Debug.Log("asd");
 
     }
 }
