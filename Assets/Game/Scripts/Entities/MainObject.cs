@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Helpers;
+using UnityEngine;
 
 
 public class MainObject : MonoSingleton<MainObject>
 {
     [SerializeField]
     private float speed;
+    private bool isGameCountinue=true;
 
-    private void Awake()
-    {
-        gameObject.SetActive(false);
+    private void Start() {
+        GameManager.Instance.Fail += OnFail;
     }
+
     void Update()
     {
-        transform.Rotate(0, 0, -(speed * Time.deltaTime));
+        if (isGameCountinue)
+        {
+            transform.Rotate(0, 0, -(speed * Time.deltaTime));
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,5 +27,9 @@ public class MainObject : MonoSingleton<MainObject>
 
         other.transform.parent = transform;
         other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+    }
+    
+    private void OnFail(){
+        isGameCountinue = false;
     }
 }

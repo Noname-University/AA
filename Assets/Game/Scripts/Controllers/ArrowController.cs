@@ -9,58 +9,37 @@ public class ArrowController : MonoBehaviour
 
     [SerializeField]
     private GameObject arrowPrefab;
-
-    private GameObject[] arrowArray;
-    [SerializeField]
-    private GameObject startScreen;
+    private Arrow[] arrowArray;
+    private int currentArrow=0;
 
     private void Awake()
     {
-        arrowArray = new GameObject[arrowCount];
+        arrowArray = new Arrow[arrowCount];
         for (int i = 0; i < arrowCount; i++)
         {
             var arrow = Instantiate(arrowPrefab, new Vector3(0, -3.28f, 0), Quaternion.identity);
-
             arrow.SetActive(false);
-            arrowArray[i] = arrow;
+            arrowArray[i] = arrow.GetComponent<Arrow>();
 
         }
-
-
-
+        
     }
-
-
+    private void Start() {
+        GameManager.Instance.Click += OnClick;
+        arrowArray[0].gameObject.SetActive(true);
+    }
 
     private void arrowLine()
-    {
-        arrowArray[0].SetActive(true);
-
-
-
-
-        for (int i = 0; i < arrowCount - 1; i++)
+    {      
+        if (arrowArray[currentArrow].transform.position.y > 0.5)
         {
-
-
-            if (arrowArray[i].transform.position.y > 0.5)
-            {
-                arrowArray[i + 1].SetActive(true);
-
-            }
-
+            arrowArray[++currentArrow].gameObject.SetActive(true);
         }
-
     }
 
-    public void Onclick()
+    public void OnClick()
     {
-        startScreen.SetActive(false);
-        MainObject.Instance.gameObject.SetActive(true);
-        arrowLine();
-
-
-
+       arrowArray[currentArrow++].ArrowFire();
     }
 
 }
