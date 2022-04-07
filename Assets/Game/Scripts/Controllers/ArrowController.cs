@@ -10,7 +10,7 @@ public class ArrowController : MonoBehaviour
     [SerializeField]
     private GameObject arrowPrefab;
     private Arrow[] arrowArray;
-    private int currentArrow=0;
+    private int currentArrow = 0;
 
     private void Awake()
     {
@@ -22,24 +22,29 @@ public class ArrowController : MonoBehaviour
             arrowArray[i] = arrow.GetComponent<Arrow>();
 
         }
-        
+
     }
-    private void Start() {
+
+    private void Start()
+    {
         GameManager.Instance.Click += OnClick;
         arrowArray[0].gameObject.SetActive(true);
     }
 
+
     private void arrowLine()
-    {      
-        if (arrowArray[currentArrow].transform.position.y > 0.5)
-        {
-            arrowArray[++currentArrow].gameObject.SetActive(true);
-        }
+    {
+
     }
 
     public void OnClick()
     {
-       arrowArray[currentArrow++].ArrowFire();
+        arrowArray[currentArrow].ArrowFire();
+        if (arrowArray[currentArrow].transform.position.y > 0.25)
+        {
+            arrowArray[++currentArrow].gameObject.SetActive(true);
+        }
+
     }
 
 }

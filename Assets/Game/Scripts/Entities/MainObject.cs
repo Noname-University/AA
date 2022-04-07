@@ -8,9 +8,10 @@ public class MainObject : MonoSingleton<MainObject>
 {
     [SerializeField]
     private float speed;
-    private bool isGameCountinue=true;
+    private bool isGameCountinue = true;
 
-    private void Start() {
+    private void Start()
+    {
         GameManager.Instance.Fail += OnFail;
     }
 
@@ -28,8 +29,9 @@ public class MainObject : MonoSingleton<MainObject>
         other.transform.parent = transform;
         other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
     }
-    
-    private void OnFail(){
+
+    private void OnFail()
+    {
         isGameCountinue = false;
     }
 }
