@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Helpers;
 
-public class MainObject : MonoBehaviour
+
+public class MainObject : MonoSingleton<MainObject>
 {
     [SerializeField]
     private float speed;
-    [SerializeField]
-    private GameObject arrow;
 
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
     void Update()
     {
         transform.Rotate(0, 0, -(speed * Time.deltaTime));

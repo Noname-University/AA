@@ -11,6 +11,8 @@ public class ArrowController : MonoBehaviour
     private GameObject arrowPrefab;
 
     private GameObject[] arrowArray;
+    [SerializeField]
+    private GameObject startScreen;
 
     private void Awake()
     {
@@ -27,15 +29,15 @@ public class ArrowController : MonoBehaviour
 
 
     }
-    private void Update()
-    {
-        arrowLine();
-    }
+
 
 
     private void arrowLine()
     {
         arrowArray[0].SetActive(true);
+
+
+
 
         for (int i = 0; i < arrowCount - 1; i++)
         {
@@ -48,6 +50,16 @@ public class ArrowController : MonoBehaviour
             }
 
         }
+
+    }
+
+    public void Onclick()
+    {
+        startScreen.SetActive(false);
+        MainObject.Instance.gameObject.SetActive(true);
+        arrowLine();
+
+
 
     }
 
