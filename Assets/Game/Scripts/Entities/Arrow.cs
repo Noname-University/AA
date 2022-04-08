@@ -29,6 +29,7 @@ public class Arrow : MonoBehaviour
         rb.velocity = new Vector3(0, speed * Time.deltaTime, 0);
     }
 
+    
 
 
 
