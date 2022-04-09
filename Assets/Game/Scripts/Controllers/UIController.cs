@@ -19,29 +19,35 @@ public class UIController : MonoBehaviour
     void Start()
     {
         OpenInGamePanel();
-        
-        GameManager.Instance.Fail+= OnFail;
+
+        GameManager.Instance.Fail += OnFail;
     }
-    private void Update() {
+    private void Update()
+    {
         ArrowCount();
     }
-    public void OnFail(){
+    public void OnFail()
+    {
         OpenDeadPanel();
     }
 
-     public void OpenInGamePanel(){
+    public void OpenInGamePanel()
+    {
         deadPanel.gameObject.SetActive(false);
         inGamePanel.gameObject.SetActive(true);
     }
-    public void OpenDeadPanel(){
+    public void OpenDeadPanel()
+    {
         deadPanel.gameObject.SetActive(true);
         inGamePanel.gameObject.SetActive(false);
     }
-    public void Restart(){
+    public void Restart()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void ArrowCount(){
-        ArrowIndex.text=ArrowController.Instance.ArrowCount.ToString();
+    public void ArrowCount()
+    {
+        ArrowIndex.text = ArrowController.Instance.ArrowCount.ToString();
     }
 
 }

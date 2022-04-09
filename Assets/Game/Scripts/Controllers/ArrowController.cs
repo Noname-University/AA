@@ -13,24 +13,24 @@ public class ArrowController : MonoSingleton<ArrowController>
     private Arrow[] arrowArray;
     private int currentArrow = 0;
     private bool isGameCountinue = true;
-    public int ArrowCount => arrowCount-(currentArrow+1);
+    public int ArrowCount => arrowCount - (currentArrow + 1);
 
 
     private void Awake()
     {
         arrowArray = new Arrow[arrowCount];
-        for (int i = 0; i <arrowCount ; i++)
+        for (int i = 0; i < arrowCount; i++)
         {
             var arrow = Instantiate(arrowPrefab, new Vector3(0, -3.28f, 0), Quaternion.identity);
             arrow.SetActive(false);
             arrowArray[i] = arrow.GetComponent<Arrow>();
-            
+
         }
     }
 
     private void Start()
     {
-        
+
         GameManager.Instance.Fail += OnFail;
         GameManager.Instance.Click += OnClick;
         arrowArray[0].gameObject.SetActive(true);
@@ -39,23 +39,28 @@ public class ArrowController : MonoSingleton<ArrowController>
 
     public void OnClick()
     {
-        
+
         if (isGameCountinue)
         {
             arrowArray[currentArrow].ArrowFire();
-            if (arrowArray[currentArrow].transform.position.y > 0.25)
+
+            if (arrowArray[currentArrow].transform.position.y > -2 && arrowArray[currentArrow] != arrowArray[arrowArray.Length - 1])
             {
                 arrowArray[++currentArrow].gameObject.SetActive(true);
             }
 
+
+
         }
-        
+
     }
-    
+
     private void OnFail()
     {
         isGameCountinue = false;
+
+
     }
 }
 
-    
+
