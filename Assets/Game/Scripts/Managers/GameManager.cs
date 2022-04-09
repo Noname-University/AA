@@ -9,6 +9,7 @@ public class GameManager : MonoSingleton<GameManager>
     private bool isTouch = false;
     public event Action Fail;
     public event Action Click;
+    public event Action Succes;
 
     public void StopGame()
     {
@@ -26,5 +27,9 @@ public class GameManager : MonoSingleton<GameManager>
         {
             isTouch = false;
         }
+    }
+
+    public void NextLevel(){
+        Succes?.Invoke();
     }
 }

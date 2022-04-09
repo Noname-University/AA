@@ -14,6 +14,7 @@ public class ArrowController : MonoSingleton<ArrowController>
     private int currentArrow = 0;
     private bool isGameCountinue = true;
     public int ArrowCount => arrowCount - (currentArrow + 1);
+    public int ArrowIndex => arrowCount;
 
 
     private void Awake()
@@ -58,8 +59,6 @@ public class ArrowController : MonoSingleton<ArrowController>
     private void OnFail()
     {
         isGameCountinue = false;
-
-
     }
 }
 
