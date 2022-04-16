@@ -29,6 +29,7 @@ public class MainObject : MonoSingleton<MainObject>
         other.transform.parent = transform;
         chilObjectCount++;
         other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        other.GetComponent<MeshRenderer>().enabled = true;
     }
 
     private void OnFail()
