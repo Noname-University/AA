@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    private void Update()
-    {
-        if (MainObject.Instance.chilObjectCount == ArrowController.Instance.ArrowIndex)
-        {
-            GameManager.Instance.StopGame();
-            GameManager.Instance.NextLevel();
-        }
+    private void Update() {
+         if (MainObject.Instance.chilObjectCount==ArrowController.Instance.ArrowIndex)
+       {
+           GameManager.Instance.StopGame();
+           GameManager.Instance.NextLevel();
+       }
     }
-
+    public void btnClick()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+   
 }
