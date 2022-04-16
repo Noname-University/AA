@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5e41f0df511ae4ba3d39503ed8f33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowCount: 10
+  arrowCount: 5
   arrowPrefab: {fileID: 7250500846355656508, guid: 785db939b20b0154e95a6a35251022ec, type: 3}
 --- !u!1 &68847793
 GameObject:
@@ -507,6 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGamePanel: {fileID: 1152000983}
   deadPanel: {fileID: 1670015602}
+  nextLevelPanel: {fileID: 1501292299}
   ArrowIndex: {fileID: 456586477}
 --- !u!4 &591260463
 Transform:
