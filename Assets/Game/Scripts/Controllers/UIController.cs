@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,6 @@ public class UIController : MonoBehaviour
     private Image deadPanel;
 
     [SerializeField]
-    private Image nextLevelPanel;
-
-    [SerializeField]
     private Text ArrowIndex;
 
     // Start is called before the first frame update
@@ -24,7 +22,6 @@ public class UIController : MonoBehaviour
         OpenInGamePanel();
 
         GameManager.Instance.Fail += OnFail;
-        GameManager.Instance.Succes += OnSuccess;
     }
     private void Update()
     {
@@ -35,28 +32,15 @@ public class UIController : MonoBehaviour
         OpenDeadPanel();
     }
 
-    public void OnSuccess()
-    {
-        OpenNextLevelPanel();    
-    }
-
     public void OpenInGamePanel()
     {
         deadPanel.gameObject.SetActive(false);
         inGamePanel.gameObject.SetActive(true);
-        nextLevelPanel.gameObject.SetActive(false);
     }
     public void OpenDeadPanel()
     {
         deadPanel.gameObject.SetActive(true);
         inGamePanel.gameObject.SetActive(false);
-        nextLevelPanel.gameObject.SetActive(false);
-    }
-    public void OpenNextLevelPanel()
-    {
-        deadPanel.gameObject.SetActive(false);
-        inGamePanel.gameObject.SetActive(false);
-        nextLevelPanel.gameObject.SetActive(true);
     }
     public void Restart()
     {
