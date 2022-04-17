@@ -20,7 +20,6 @@ public class Arrow : MonoBehaviour
         if (enemyT != null)
         {
             GameManager.Instance.StopGame();
-
         }
     }
 

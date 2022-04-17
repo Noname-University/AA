@@ -24,12 +24,12 @@ public class MainObject : MonoSingleton<MainObject>
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other) 
     {
         other.transform.parent = transform;
         chilObjectCount++;
-        other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-        other.GetComponent<MeshRenderer>().enabled = true;
+        other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        other.gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
 
     private void OnFail()

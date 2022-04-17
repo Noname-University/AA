@@ -29,7 +29,8 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    public void NextLevel(){
+    public void NextLevel()
+    {
         Succes?.Invoke();
     }
 }

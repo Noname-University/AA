@@ -18,11 +18,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Text ArrowIndex;
 
-    // Start is called before the first frame update
     void Start()
     {
         OpenInGamePanel();
-
         GameManager.Instance.Fail += OnFail;
         GameManager.Instance.Succes += OnSuccess;
     }
@@ -37,7 +35,7 @@ public class UIController : MonoBehaviour
 
     public void OnSuccess()
     {
-        OpenNextLevelPanel();    
+        OpenNextLevelPanel();     
     }
 
     public void OpenInGamePanel()
