@@ -14,6 +14,8 @@ public class GameManager : MonoSingleton<GameManager>
     public void StopGame()
     {
         Fail?.Invoke();
+
+
     }
 
     private void Update()
@@ -32,5 +34,6 @@ public class GameManager : MonoSingleton<GameManager>
     public void NextLevel()
     {
         Succes?.Invoke();
+        
     }
 }

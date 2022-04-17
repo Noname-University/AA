@@ -31,11 +31,13 @@ public class UIController : MonoBehaviour
     public void OnFail()
     {
         OpenDeadPanel();
+
+
     }
 
     public void OnSuccess()
     {
-        OpenNextLevelPanel();     
+        OpenNextLevelPanel();
     }
 
     public void OpenInGamePanel()
