@@ -14,14 +14,7 @@ public class Arrow : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        var enemyT = other.GetComponent<Arrow>();
-        if (enemyT != null)
-        {
-            GameManager.Instance.StopGame();
-        }
-    }
+    
 
     public void ArrowFire()
     {
