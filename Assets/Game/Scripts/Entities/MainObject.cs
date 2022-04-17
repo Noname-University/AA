@@ -9,7 +9,7 @@ public class MainObject : MonoSingleton<MainObject>
     [SerializeField]
     private float speed;
     private bool isGameCountinue = true;
-    public int chilObjectCount;
+    public int chilObjectCount = 0;
 
     private void Start()
     {
@@ -26,6 +26,7 @@ public class MainObject : MonoSingleton<MainObject>
 
     private void OnCollisionEnter(Collision other) 
     {
+        Debug.Log("asdasd");
         other.transform.parent = transform;
         chilObjectCount++;
         other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;

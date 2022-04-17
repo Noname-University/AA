@@ -10,10 +10,11 @@ public class ArrowController : MonoSingleton<ArrowController>
 
     [SerializeField]
     private GameObject arrowPrefab;
+
     private Arrow[] arrowArray;
     private int currentArrow = 0;
     private bool isGameCountinue = true;
-    public int ArrowCount => arrowCount - (currentArrow + 1);
+    public int ArrowCount => arrowCount - (currentArrow+1);
     public int ArrowIndex => arrowCount;
 
     private void Awake()
@@ -31,7 +32,6 @@ public class ArrowController : MonoSingleton<ArrowController>
     {
         GameManager.Instance.Fail += OnFail;
         GameManager.Instance.Click += OnClick;
-
         arrowArray[0].gameObject.SetActive(true);
         arrowArray[0].GetComponent<MeshRenderer>().enabled = false;
     }
@@ -41,6 +41,7 @@ public class ArrowController : MonoSingleton<ArrowController>
         if (isGameCountinue)
         {
             arrowArray[currentArrow].ArrowFire();
+            
             if (arrowArray[currentArrow].transform.position.y > -2 && arrowArray[currentArrow] != arrowArray[arrowArray.Length - 1])
             {
                 arrowArray[++currentArrow].gameObject.SetActive(true);

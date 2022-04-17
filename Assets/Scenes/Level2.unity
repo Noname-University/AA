@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowCount: 5
   arrowPrefab: {fileID: 7250500846355656508, guid: 785db939b20b0154e95a6a35251022ec, type: 3}
+  countArrow: 0
 --- !u!1 &68847793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,7 +1752,7 @@ GameObject:
   - component: {fileID: 3034253808882738841}
   - component: {fileID: 3034253808882738846}
   - component: {fileID: 3034253808882738821}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Arrow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1846,7 +1847,7 @@ GameObject:
   - component: {fileID: 4149819359157381407}
   - component: {fileID: 4149819359157381400}
   - component: {fileID: 4149819359157381379}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
