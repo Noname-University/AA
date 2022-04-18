@@ -30,6 +30,7 @@ public class MainObject : MonoSingleton<MainObject>
         chilObjectCount++;
         other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
         other.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     private void OnFail()

@@ -53,6 +53,7 @@ public class ArrowController : MonoSingleton<ArrowController>
     private void OnFail()
     {
         isGameCountinue = false;
+
     }
 }
 
