@@ -26,7 +26,6 @@ public class MainObject : MonoSingleton<MainObject>
 
     private void OnCollisionEnter(Collision other) 
     {
-        Debug.Log("asdasd");
         other.transform.parent = transform;
         chilObjectCount++;
         other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;

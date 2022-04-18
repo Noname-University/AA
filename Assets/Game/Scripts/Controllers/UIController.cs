@@ -31,8 +31,6 @@ public class UIController : MonoBehaviour
     public void OnFail()
     {
         OpenDeadPanel();
-
-
     }
 
     public void OnSuccess()
