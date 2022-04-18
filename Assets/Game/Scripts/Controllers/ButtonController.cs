@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Helpers;
 
 public class ButtonController : MonoSingleton<ButtonController>
 {
@@ -23,7 +23,7 @@ public class ButtonController : MonoSingleton<ButtonController>
 
     public void LevelText()
     {
-        var currentScene = SceneManager.GetActiveScene().buildIndex;
+        var currentScene = SceneManager.GetActiveScene().buildIndex + 1;
         levelIndex.text = "Level " + currentScene.ToString();
     }
 }

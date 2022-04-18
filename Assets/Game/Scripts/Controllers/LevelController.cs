@@ -13,10 +13,5 @@ public class LevelController : MonoBehaviour
            GameManager.Instance.NextLevel();
         }
     }
-    public void btnClick()
-    {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(nextSceneIndex);
-    }
 
 }
