@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Helpers;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class MainObject : MonoSingleton<MainObject>
@@ -10,10 +12,13 @@ public class MainObject : MonoSingleton<MainObject>
     private float speed;
     private bool isGameCountinue = true;
     public int chilObjectCount = 0;
+    [SerializeField]
+    private TextMeshPro levelText;
 
     private void Start()
     {
         GameManager.Instance.Fail += OnFail;
+        levelText.text = SceneManager.GetActiveScene().buildIndex.ToString();
     }
 
     void Update()
@@ -24,7 +29,7 @@ public class MainObject : MonoSingleton<MainObject>
         }
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void OnCollisionEnter(Collision other)
     {
         other.transform.parent = transform;
         chilObjectCount++;

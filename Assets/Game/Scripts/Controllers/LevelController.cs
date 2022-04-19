@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    private void Update() 
+    private void Update()
     {
-        if (MainObject.Instance.chilObjectCount==ArrowController.Instance.ArrowIndex)
+        if (MainObject.Instance.chilObjectCount == ArrowController.Instance.ArrowIndex)
         {
-           GameManager.Instance.StopGame();
-           GameManager.Instance.NextLevel();
+            GameManager.Instance.StopGame();
+            GameManager.Instance.NextLevel();
         }
     }
 

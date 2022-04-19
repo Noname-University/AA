@@ -31,6 +31,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void NextLevel()
     {
-        Succes?.Invoke();   
+        Succes?.Invoke();
     }
 }
