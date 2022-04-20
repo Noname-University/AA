@@ -6,14 +6,19 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    private bool isTouch = false;
-    public event Action Fail;
-    public event Action Click;
-    public event Action Succes;
+    public event Action<GameStates> GameStateChanged;
 
-    public void StopGame()
+    public GameStates GameState => gameState;
+
+    private GameStates gameState = GameStates.Game;
+
+    private bool isTouch = false;
+    
+    public event Action Click;
+
+    private void Start() 
     {
-        Fail?.Invoke();
+        UpdateGameState(GameStates.Start);    
     }
 
     private void Update()
@@ -29,8 +34,10 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    public void NextLevel()
+    public void UpdateGameState(GameStates newState)
     {
-        Succes?.Invoke();
+        gameState = newState;
+
+        GameStateChanged?.Invoke(newState);
     }
 }

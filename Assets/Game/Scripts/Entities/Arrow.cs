@@ -14,16 +14,8 @@ public class Arrow : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-
-
     public void ArrowFire()
     {
-        rb.velocity = new Vector3(0, speed * Time.deltaTime, 0);
-
+        rb.velocity = new Vector3(0, speed, 0);
     }
-
-
-
-
-
 }

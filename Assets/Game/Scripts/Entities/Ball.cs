@@ -7,9 +7,9 @@ public class Ball : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var enemyT = other.GetComponent<Ball>();
-        if (enemyT != null)
-        {
-            GameManager.Instance.StopGame();
-        }
+        if (enemyT == null) return;
+        
+        GameManager.Instance.UpdateGameState(GameStates.Fail);
+        
     }
 }

@@ -4,26 +4,37 @@ using Helpers;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using System;
 
 public class MainObject : MonoSingleton<MainObject>
 {
+    #region Serializefields
     [SerializeField]
     private float speed;
-    private bool isGameCountinue = true;
-    public int chilObjectCount = 0;
+
     [SerializeField]
     private TextMeshPro levelText;
 
+    #endregion
+
+    #region Variables
+    private bool isFail = false;
+    private int childObjectCount = 0;
+
+    #endregion
+
+    #region Unity Methods
+
+
     private void Start()
     {
-        GameManager.Instance.Fail += OnFail;
         levelText.text = SceneManager.GetActiveScene().buildIndex.ToString();
+        GameManager.Instance.GameStateChanged += OnGameStateChanged; 
     }
 
     void Update()
     {
-        if (isGameCountinue)
+        if (GameManager.Instance.GameState == GameStates.Game)
         {
             transform.Rotate(0, 0, -(speed * Time.deltaTime));
         }
@@ -32,14 +43,20 @@ public class MainObject : MonoSingleton<MainObject>
     private void OnCollisionEnter(Collision other)
     {
         other.transform.parent = transform;
-        chilObjectCount++;
+        if (++childObjectCount == ArrowController.Instance.ArrowIndex && !isFail)
+        {
+            GameManager.Instance.UpdateGameState(GameStates.Success);
+        }
         other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
         other.gameObject.GetComponent<MeshRenderer>().enabled = true;
         other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    private void OnFail()
+    #endregion
+
+    private void OnGameStateChanged(GameStates newState)
     {
-        isGameCountinue = false;
+        if (newState == GameStates.Fail)
+            isFail = true;
     }
 }
