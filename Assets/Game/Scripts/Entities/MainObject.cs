@@ -23,7 +23,7 @@ public class MainObject : MonoSingleton<MainObject>
 
     private void Start()
     {
-        GameManager.Instance.GameStateChanged += OnGameStateChanged; 
+        GameManager.Instance.GameStateChanged += OnGameStateChanged;
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class MainObject : MonoSingleton<MainObject>
     private void OnCollisionEnter(Collision other)
     {
         var arrow = other.gameObject.GetComponent<Arrow>();
-        if(arrow != null)
+        if (arrow != null)
         {
             other.transform.parent = transform;
             if (++childObjectCount == LevelController.Instance.CurrentArrowCount && !isFail)
@@ -48,7 +48,7 @@ public class MainObject : MonoSingleton<MainObject>
             other.gameObject.GetComponent<MeshRenderer>().enabled = true;
             other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
-        
+
     }
 
     #endregion
@@ -60,13 +60,13 @@ public class MainObject : MonoSingleton<MainObject>
             case GameStates.Fail:
                 isFail = true;
                 childObjectCount = 0;
-            break;
+                break;
 
             case GameStates.Game:
                 isFail = false;
                 childObjectCount = 0;
-            break;
-            
+                break;
+
         }
     }
 }

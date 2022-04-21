@@ -70,7 +70,7 @@ public class ArrowController : MonoSingleton<ArrowController>
             if (currentArrow < maxArrowCount)
             {
                 isAnim = true;
-                LeanTween.delayedCall(.2f,()=>isAnim = false);
+                LeanTween.delayedCall(.2f, () => isAnim = false);
                 arrowArray[currentArrow++].ArrowFire();
 
                 for (int i = currentArrow; i < arrowArray.Length; i++)

@@ -17,15 +17,17 @@ public class LevelController : MonoSingleton<LevelController>
     public int CurrentArrowCount { get; private set; }
 
     public float Speed { get; private set; }
+    public int[] Obstacle { get; private set; }
 
-    private void Awake() 
+
+    private void Awake()
     {
         currentLevel = PlayerPrefs.GetInt("Level");
-        
+
     }
-    private void Start() 
+    private void Start()
     {
-        
+
         GameManager.Instance.GameStateChanged += OnGameStateChanged;
     }
 
@@ -34,19 +36,20 @@ public class LevelController : MonoSingleton<LevelController>
         currentLevel = PlayerPrefs.GetInt("Level");
         CurrentArrowCount = levels[currentLevel].arrowCount;
         Speed = levels[currentLevel].mainObjectSpeed;
+        Obstacle = levels[currentLevel].obstacleDegrees;
         ArrowController.Instance.RestartArrows(levels[currentLevel].arrowCount);
-        
+
     }
 
     public void GetNextLevel()
     {
-        PlayerPrefs.SetInt("Level",currentLevel + 1);
+        PlayerPrefs.SetInt("Level", currentLevel + 1);
         GameManager.Instance.UpdateGameState(GameStates.Game);
     }
 
     private void OnGameStateChanged(GameStates newState)
     {
-        if(newState == GameStates.Game)
+        if (newState == GameStates.Game)
         {
             InitLevel();
         }
