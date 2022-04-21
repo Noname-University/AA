@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5e41f0df511ae4ba3d39503ed8f33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowCount: 10
+  maxArrowCount: 15
   arrowPrefab: {fileID: 7250500846355656508, guid: 785db939b20b0154e95a6a35251022ec, type: 3}
 --- !u!1 &68847793
 GameObject:
@@ -201,8 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fa2b5c5681cb74ab01f16f5fcc4d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
-  levelText: {fileID: 1065308751}
 --- !u!135 &68847795
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -274,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 68847793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.85, z: 0}
-  m_LocalScale: {x: 2.9554, y: 2.9554, z: 2.9554}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -638,11 +636,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03425e32e5473a64b8774d7b09277bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainObjectLevelText: {fileID: 1065308751}
   nextLevelText: {fileID: 1055164026}
   startLevelText: {fileID: 1226862110}
   failPanel: {fileID: 1670015602}
   nextLevelPanel: {fileID: 1501292299}
   StartPanel: {fileID: 1270502406}
+  canvas: {fileID: 141144015}
 --- !u!4 &591260463
 Transform:
   m_ObjectHideFlags: 0
@@ -1598,6 +1598,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e26a1380fa156543993d5d52e208c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 11400000, guid: e9705a7abd7e65b4f9bac9b2d82b9d3a, type: 2}
+  - {fileID: 11400000, guid: 5725ae18c6c1ccf47a8a447965b1f2d1, type: 2}
+  - {fileID: 11400000, guid: 60a56e487b9d2434db1258afd373f2e2, type: 2}
+  - {fileID: 11400000, guid: 835a5b0019e8b5f40925fa445dc9a24f, type: 2}
 --- !u!1 &1670015600
 GameObject:
   m_ObjectHideFlags: 0

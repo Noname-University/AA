@@ -9,11 +9,6 @@ using System;
 public class MainObject : MonoSingleton<MainObject>
 {
     #region Serializefields
-    [SerializeField]
-    private float speed;
-
-    [SerializeField]
-    private TextMeshPro levelText;
 
     #endregion
 
@@ -28,7 +23,6 @@ public class MainObject : MonoSingleton<MainObject>
 
     private void Start()
     {
-        levelText.text = SceneManager.GetActiveScene().buildIndex.ToString();
         GameManager.Instance.GameStateChanged += OnGameStateChanged; 
     }
 
@@ -36,27 +30,43 @@ public class MainObject : MonoSingleton<MainObject>
     {
         if (GameManager.Instance.GameState == GameStates.Game)
         {
-            transform.Rotate(0, 0, -(speed * Time.deltaTime));
+            transform.Rotate(0, 0, -(LevelController.Instance.Speed * Time.deltaTime));
         }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        other.transform.parent = transform;
-        if (++childObjectCount == ArrowController.Instance.ArrowIndex && !isFail)
+        var arrow = other.gameObject.GetComponent<Arrow>();
+        if(arrow != null)
         {
-            GameManager.Instance.UpdateGameState(GameStates.Success);
+            other.transform.parent = transform;
+            if (++childObjectCount == LevelController.Instance.CurrentArrowCount && !isFail)
+            {
+                GameManager.Instance.UpdateGameState(GameStates.Success);
+            }
+            other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            other.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
-        other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-        other.gameObject.GetComponent<MeshRenderer>().enabled = true;
-        other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        
     }
 
     #endregion
 
     private void OnGameStateChanged(GameStates newState)
     {
-        if (newState == GameStates.Fail)
-            isFail = true;
+        switch (newState)
+        {
+            case GameStates.Fail:
+                isFail = true;
+                childObjectCount = 0;
+            break;
+
+            case GameStates.Game:
+                isFail = false;
+                childObjectCount = 0;
+            break;
+            
+        }
     }
 }

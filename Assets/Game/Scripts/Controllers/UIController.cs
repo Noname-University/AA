@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshPro mainObjectLevelText;
+
     [SerializeField]
     private Text nextLevelText;
 
@@ -22,6 +26,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Image StartPanel;
 
+    [SerializeField]
+    private Transform canvas;
+
 
     void Start()
     {
@@ -29,38 +36,52 @@ public class UIController : MonoBehaviour
 
         StartPanel.gameObject.SetActive(true);
 
-        nextLevelText.text = "Level " + (SceneManager.GetActiveScene().buildIndex + 2).ToString();
-        startLevelText.text = "Level " + (SceneManager.GetActiveScene().buildIndex + 1).ToString();
+        nextLevelText.text = "Level " + (LevelController.Instance.CurrentLevel + 2).ToString();
+        startLevelText.text = "Level " + (LevelController.Instance.CurrentLevel + 1).ToString();
+
+        mainObjectLevelText.text = (LevelController.Instance.CurrentLevel + 1).ToString();
 
     }
 
     public void NextLevelButton()
     {
         LevelController.Instance.GetNextLevel();
+        CloseAllPanels();
     }
 
     public void OpenFailPanel()
     {
+        CloseAllPanels();
         failPanel.gameObject.SetActive(true);
 
-        nextLevelPanel.gameObject.SetActive(false);
     }
 
     public void OpenNextLevelPanel()
     {
-        failPanel.gameObject.SetActive(false);
+        CloseAllPanels();
+        nextLevelText.text = "Level " + (LevelController.Instance.CurrentLevel + 2).ToString();
+        startLevelText.text = "Level " + (LevelController.Instance.CurrentLevel + 1).ToString();
         nextLevelPanel.gameObject.SetActive(true);
     }
 
     public void Restart()
     {
-        LevelController.Instance.Restart();
+        CloseAllPanels();
+        GameManager.Instance.UpdateGameState(GameStates.Game);
     }
 
     public void CloseStartPanel()
     {
-        StartPanel.gameObject.SetActive(false);
+        CloseAllPanels();
         GameManager.Instance.UpdateGameState(GameStates.Game);
+    }
+
+    private void CloseAllPanels()
+    {
+        for (int i = 0; i < canvas.childCount; i++)
+        {
+            canvas.GetChild(i).gameObject.SetActive(false);
+        }
     }
     
     private void OnGameStateChanged(GameStates newState)
@@ -68,12 +89,16 @@ public class UIController : MonoBehaviour
         switch (newState)
         {
             case GameStates.Success:
-            OpenNextLevelPanel();
-            break;
+                OpenNextLevelPanel();
+                mainObjectLevelText.text = (LevelController.Instance.CurrentLevel + 2).ToString();
+                break;
+
+            case GameStates.Game:
+                break;
 
             case GameStates.Fail:
-            OpenFailPanel();
-            break;
+                OpenFailPanel();
+                break;
         }
     }
 }
