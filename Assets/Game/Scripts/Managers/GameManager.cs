@@ -23,7 +23,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Update()
     {
-        if (Input.touchCount > 0 && !isTouch)
+        if (Input.touchCount > 0 && !isTouch && GameState == GameStates.Game)
         {
             isTouch = true;
             Click?.Invoke();

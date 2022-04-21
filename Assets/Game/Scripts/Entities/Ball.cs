@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
         var enemyT = other.GetComponent<Ball>();
         if (enemyT == null) return;
         
+        if(GameManager.Instance.GameState == GameStates.Fail) return;
         GameManager.Instance.UpdateGameState(GameStates.Fail);
         
     }

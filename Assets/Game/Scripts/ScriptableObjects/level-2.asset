@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f3da4c219ea6a46a9d2cff8f99eca6, type: 3}
   m_Name: level-2
   m_EditorClassIdentifier: 
-  mainObjectSpeed: 250
-  arrowCount: 7
+  mainObjectSpeed: 220
+  arrowCount: 3
+  obstacleDegrees: 000000005a000000
+  timer: 3

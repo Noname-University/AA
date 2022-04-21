@@ -17,7 +17,8 @@ public class LevelController : MonoSingleton<LevelController>
     public int CurrentArrowCount { get; private set; }
 
     public float Speed { get; private set; }
-    public int[] Obstacle { get; private set; }
+    public int[] ObstacleDegrees { get; private set; }
+    public float Timer { get; private set; }
 
 
     private void Awake()
@@ -36,8 +37,11 @@ public class LevelController : MonoSingleton<LevelController>
         currentLevel = PlayerPrefs.GetInt("Level");
         CurrentArrowCount = levels[currentLevel].arrowCount;
         Speed = levels[currentLevel].mainObjectSpeed;
-        Obstacle = levels[currentLevel].obstacleDegrees;
-        ArrowController.Instance.RestartArrows(levels[currentLevel].arrowCount);
+        ObstacleDegrees = levels[currentLevel].obstacleDegrees;
+        Timer = levels[currentLevel].timer;
+
+        ArrowController.Instance.InitArrows(levels[currentLevel].arrowCount);
+        ObstacleController.Instance.InitObstacles();
 
     }
 

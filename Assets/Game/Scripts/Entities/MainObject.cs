@@ -15,6 +15,9 @@ public class MainObject : MonoSingleton<MainObject>
     #region Variables
     private bool isFail = false;
     private int childObjectCount = 0;
+    private float timer;
+
+    private int direction = 1;
 
     #endregion
 
@@ -30,13 +33,22 @@ public class MainObject : MonoSingleton<MainObject>
     {
         if (GameManager.Instance.GameState == GameStates.Game)
         {
-            transform.Rotate(0, 0, -(LevelController.Instance.Speed * Time.deltaTime));
+            transform.Rotate(0, 0, (LevelController.Instance.Speed * Time.deltaTime) * direction);
+
+            if(LevelController.Instance.Timer == 0) return;
+            
+            timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                timer = LevelController.Instance.Timer;
+                direction *= -1;
+            }
         }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        var arrow = other.gameObject.GetComponent<Arrow>();
+        var arrow = other.gameObject.GetComponentInChildren<Arrow>();
         if (arrow != null)
         {
             other.transform.parent = transform;
@@ -45,7 +57,7 @@ public class MainObject : MonoSingleton<MainObject>
                 GameManager.Instance.UpdateGameState(GameStates.Success);
             }
             other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-            other.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            arrow.UpdateMesh(true);
             other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
 
@@ -64,6 +76,7 @@ public class MainObject : MonoSingleton<MainObject>
 
             case GameStates.Game:
                 isFail = false;
+                timer = LevelController.Instance.Timer;
                 childObjectCount = 0;
                 break;
 

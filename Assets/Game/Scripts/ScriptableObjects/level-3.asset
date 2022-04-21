@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainObjectSpeed: 250
   arrowCount: 7
+  obstacleDegrees: 320000006400000096000000
+  timer: 0
